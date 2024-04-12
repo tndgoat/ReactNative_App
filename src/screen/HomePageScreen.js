@@ -25,10 +25,19 @@ function Widget({ device, navigation }) {
   const [isEnabled1, setIsEnabled1] = useState(false);
   const toggleSwitch1 = () => setIsEnabled1((previousState) => !previousState);
 
+  const screenMapping = {
+    "Smart Light": "SmartLight",
+    "Smart Fan": "SmartFan",
+    "Smart TV": "SmartTV",
+    "Smart AC": "SmartAC",
+  };
+
+  const targetScreen = screenMapping[device];
+
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate("SmartLight");
+        navigation.navigate(targetScreen);
       }}
     >
       <View

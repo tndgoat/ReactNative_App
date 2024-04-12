@@ -18,6 +18,8 @@ import { useCallback } from "react";
 import * as SplashScreen from "expo-splash-screen";
 import OctIcon from "react-native-vector-icons/Octicons";
 import TabNavigator from "./src/screen/TabNavigator.js";
+import SmartTVControl from "./src/screen/SmartTVControl.js";
+import SmartTVSetting from "./src/screen/SmartTVSetting.js";
 
 const Stack = createNativeStackNavigator();
 
@@ -92,6 +94,40 @@ export default function App() {
           }}
           name="LightSetting"
           component={SmartLightSetting}
+        />
+        <Stack.Screen
+          options={{
+            title: "Smart TV",
+            // headerTransparent: true,
+            headerShadowVisible: false,
+            headerStyle: {
+              backgroundColor: "#F0F5F4",
+            },
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+          }}
+          name="SmartTV"
+          component={SmartTVControl}
+        />
+
+        <Stack.Screen
+          options={{
+            title: "Smart TV Setting",
+            // headerTransparent: true,
+
+            headerShadowVisible: false,
+            headerStyle: {
+              backgroundColor: "#F0F5F4",
+            },
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+          }}
+          name="SmartTVSetting"
+          component={SmartTVSetting}
         />
       </Stack.Navigator>
     </NavigationContainer>
