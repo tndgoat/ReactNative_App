@@ -31,7 +31,9 @@ const LocalAuth = (props) => {
         await LocalAuthentication.authenticateAsync()
             .then(res => {
                 if (res.success === true) {
-                    navigation.navigate('SmartLight')
+                    navigation.navigate('NavScreen',)
+                    // navigation.navigate('SmartTV',)
+                    // navigation.navigate('SmartLight',)
                 }
             })
     };

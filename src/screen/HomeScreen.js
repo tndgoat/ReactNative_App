@@ -12,14 +12,14 @@ const HomeScreen = ({ navigation }) => {
                 colors={['rgba(52, 168, 83, 0.15)', 'rgba(52, 168, 83, 1)']}
                 style={styles.linearGradient}
             >
-                <Text className='text-[40px] font-bold'>
+                <Text className='text-[40px] text-black/[.75] font-bold'>
                     Smart Home
                 </Text>
                 <Image className='w-[300px]' style={styles.image} source={require('../../assets/bg-image.png')} />
-                <Text className='text-[40px] font-bold'>
+                <Text className='text-[40px] text-black/[.75] font-bold'>
                     Welcome Home!
                 </Text>
-                <Text className='text-[16px] font-medium p-[20px]'>
+                <Text className='text-[16px] text-black/[.75] font-medium p-[20px]'>
                     No matter how far you go, {"\n"}
                     home will be your destination to return to.
                     Let's make your home comfortable.

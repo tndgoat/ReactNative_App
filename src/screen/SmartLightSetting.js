@@ -9,18 +9,12 @@ import {
 } from 'react-native'
 const SmartLightSetting = ({ route }) => {
     const schedules = route.params.schedule
-    const color = route.params.color
-    // console.log(schedules)
+    // const color = route.params.color
     const [schedulelist, setSchedulelist] = useState(schedules)
-    // setSchedulelist(previousState => {
-    //     console.log(previousState)
-    //     return { ...previousState }
-    // });
 
-    const [selectedValue, setSelectedValue] = useState(color.currcolor - 1);
-    const [isEnabled, setIsEnabled] = useState(false);
+    const [selectedValue, setSelectedValue] = useState(route.params.color.currcolor - 1);
+    const [isEnabled, setIsEnabled] = useState(route.params.status == 1);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-    // const handleAddSchedule = () => schedules.push({ "day": ["Thu", "Fri"], "time": ["11", "00", "22", "30"] })
     const colorList = ["#FFAA1D", "#007BFF", "#F9280C"]
     return (
         <ScrollView showsVerticalScrollIndicator={false} >
@@ -44,10 +38,10 @@ const SmartLightSetting = ({ route }) => {
                             <View className='flex justify-center self-center space-y-2 items-center '>
                                 <Text className='text-[16px]'>Color</Text>
                                 <View className='flex flex-row h-[70px] py-1 rounded-xl border border-2 border-[#34A853]/[.55]'>
-                                    {[...Array(color.num).keys()].map((item, index) => (
-                                        <View>
+                                    {[...Array(route.params.color.num).keys()].map((item, index) => (
+                                        <View key={index}>
                                             <RadioButton
-                                                key={index}
+
                                                 value={index}
                                                 status={selectedValue == index ?
                                                     'checked' : 'unchecked'}
