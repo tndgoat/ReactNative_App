@@ -5,18 +5,14 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Icon } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LightItem from '../component/DeviceItem';
-import RadioButton from '../component/RadioButton';
+import DeviceItem from '../component/DeviceItem';
 import { SelectList } from 'react-native-dropdown-select-list'
-
-const SmartLightControl = ({ }) => {
+const SmartTVControl = ({ }) => {
     // console.log(route.params)
     const [modalVisible, setModalVisible] = useState(false);
-    const [selectedValue, setSelectedValue] = useState('option1');
     const [selected, setSelected] = React.useState("");
-
     const [option, setOption] = useState(null);
-    const rooms = [
+    const data = [
         { key: '1', value: 'Living Room', },
         { key: '2', value: 'Study Room' },
         { key: '3', value: 'Bedroom' },
@@ -24,91 +20,46 @@ const SmartLightControl = ({ }) => {
         { key: '5', value: 'Toilet' },
         { key: '6', value: 'Bedroom 2' },
     ]
-    const data = [
+    const tvdata = [
         {
-            id: 1,
-            name: 'Smart Light 1',
+            name: 'Smart TV 1',
             location: 'Bedroom',
-            color: { num: 2, currcolor: 1 },
+            channel: 'VTV1',
 
             status: 1,
-            schedule: [
-                { day: ['Mon', 'Fri'], time: ['18', '00', '22', '30'] },
-                { day: ['Tue', 'Fri'], time: ['12', '00', '22', '30'] },
-                { day: ['Thu', 'Fri'], time: ['11', '00', '22', '30'] },
-                { day: ['Mon', 'Fri'], time: ['18', '00', '22', '30'] },
-                { day: ['Tue', 'Fri'], time: ['12', '00', '22', '30'] },
-                { day: ['Thu', 'Fri'], time: ['11', '00', '22', '30'] },
-                { day: ['Mon', 'Fri'], time: ['18', '00', '22', '30'] },
-                { day: ['Tue', 'Fri'], time: ['12', '00', '22', '30'] },
-                { day: ['Thu', 'Fri'], time: ['11', '00', '22', '30'] },
-            ]
-        },
-        {
-            id: 2,
-            name: 'Smart Light 2',
-            location: 'Bedroom',
-            color: { num: 3, currcolor: 2 },
-
-            status: 1,
-            schedule: [
-                { day: ['Mon', 'Fri'], time: ['18', '00', '22', '30'] },
-                { day: ['Tue', 'Fri'], time: ['12', '00', '22', '30'] },
-                { day: ['Thu', 'Fri'], time: ['11', '00', '22', '30'] },
-            ]
 
         },
         {
-            id: 3,
-            name: 'Smart Light 3',
+            name: 'Smart TV 2',
             location: 'Bedroom',
-            color: { num: 2, currcolor: 1 },
+            channel: 'VTV1',
+
+            status: 1,
+
+
+        },
+        {
+            name: 'Smart TV 3',
+            location: 'Bedroom',
+            channel: 'VTV13',
 
             status: 0,
-            schedule: [
-                // { day: ['Mon', 'Fri'], time: ['18', '00', '22', '30'] },
-                // { day: ['Tue', 'Fri'], time: ['12', '00', '22', '30'] },
-                // { day: ['Thu', 'Fri'], time: ['11', '00', '22', '30'] },
-            ]
+
         },
         {
-            id: 4,
-            name: 'Smart Light 4',
+            name: 'Smart TV 4',
             location: 'Bedroom',
-            color: { num: 3, currcolor: 3 },
+            channel: 'VTV2',
 
             status: 1,
-            schedule: [
-                { day: ['Mon', 'Fri'], time: ['18', '00', '22', '30'] },
-                // { day: ['Tue', 'Fri'], time: ['12', '00', '22', '30'] },
-                // { day: ['Thu', 'Fri'], time: ['11', '00', '22', '30'] },
-            ]
+
 
         },
         {
-            id: 5,
-            name: 'Smart Light 5',
+            name: 'Smart TV 5',
             location: 'Bedroommmm',
-            color: { num: 2, currcolor: 1 },
+            channel: 'VTV1',
             status: 0,
-            schedule: [
-                { day: ['Mon', 'Fri'], time: ['18', '00', '22', '30'] },
-                { day: ['Tue', 'Fri'], time: ['12', '00', '22', '30'] },
-                { day: ['Thu', 'Fri'], time: ['11', '00', '22', '30'] },
-            ]
-
-        }, {
-            id: 6,
-            name: 'Smart Light 6',
-            location: 'Bedroommmm',
-            color: { num: 3, currcolor: 1 },
-
-            status: 1,
-            schedule: [
-                { day: ['Mon', 'Fri'], time: ['18', '00', '22', '30'] },
-                { day: ['Tue', 'Fri'], time: ['12', '00', '22', '30'] },
-                { day: ['Thu', 'Fri'], time: ['11', '00', '22', '30'] },
-            ]
 
         },
     ]
@@ -131,7 +82,7 @@ const SmartLightControl = ({ }) => {
                         <View className='flex flex-row items-center space-x-1' >
                             <Text className='text-[18px] font-semibold'>Device</Text>
                             <View className='flex items-center justify-center bg-[#4C7380] w-[23px] h-[23px] rounded-md'>
-                                <Text className='text-[14px] text-white font-semibold'>{data.length}</Text>
+                                <Text className='text-[14px] text-white font-semibold'>{tvdata.length}</Text>
                             </View>
                         </View>
                         <View className='flex flex-row space-x-2'>
@@ -152,22 +103,17 @@ const SmartLightControl = ({ }) => {
                                 <View className='flex flex-1 justify-end bg-[#000]/[.2]'>
                                     <View className=' items-center space-y-5 pb-2 pt-4 bg-white w-full rounded-t-[30px] ' style={{ elevation: 2 }}>
                                         <View className='w-[90%] pb-1 border-b-[1px]' >
-                                            <Text className='text-[18px] font-semibold'>Add Light</Text>
+                                            <Text className='text-[18px] font-semibold'>Add TV</Text>
 
                                         </View>
                                         <View className='space-y-3  justify-center items-center'>
-                                            <View className="flex justify-center w-[275px] h-[40px] px-4 rounded-lg bg-white border border-[1px] border-gray-400">
-                                                <TextInput placeholder="Enter your light's name" />
+                                            <View className="flex justify-center w-[275px] h-[45px] px-4 rounded-lg bg-white border border-[1px] border-gray-400">
+                                                <TextInput placeholder="Enter your TV's name" />
                                             </View>
-
-                                            <View className="flex justify-center w-[275px] h-[40px] px-4 rounded-lg bg-white border border-[1px] border-gray-400">
-                                                <TextInput placeholder="Enter your light's ID" />
-                                            </View>
-                                            <View className="flex justify-center w-[275px] items-center px-4 rounded-lg bg-white">
+                                            <View className="flex justify-center w-[275px] items-center px-4 rounded-lg bg-white ">
                                                 <SelectList
                                                     setSelected={(val) => setSelected(val)}
-                                                    data={rooms}
-                                                    placeholder='Select position'
+                                                    data={data}
                                                     save="value"
                                                     boxStyles={{
                                                         height: 45,
@@ -175,9 +121,6 @@ const SmartLightControl = ({ }) => {
                                                         borderColor: 'rgba(156, 163, 143, 1)'
                                                     }}
                                                 />
-                                            </View>
-                                            <View>
-                                                <RadioButton className='flex flex-row' data={mode} onSelect={(value) => setOption(value)} />
                                             </View>
                                         </View>
                                         <View className='flex  w-[90%] flex-row space-x-3  items-left'>
@@ -193,6 +136,8 @@ const SmartLightControl = ({ }) => {
                                                 onPress={() => handleSubmit()}>
                                                 <Text className='font-medium text-white'>Save</Text>
                                             </TouchableOpacity>
+
+
                                         </View>
 
                                     </View>
@@ -201,8 +146,8 @@ const SmartLightControl = ({ }) => {
                             </Modal>
                         </View>
                     </View>
-                    {data.map((light, index) => (
-                        <LightItem key={index} id={'id'} type={'light'} name={light.name} location={light.location} color={light.color} status={light.status} schedule={light.schedule}></LightItem>
+                    {tvdata.map((tv, index) => (
+                        <DeviceItem key={index} type={'tv'} name={tv.name} location={tv.location} channel={tv.channel} status={tv.status} />
                     ))}
 
 
@@ -227,4 +172,4 @@ const styles = StyleSheet.create({
     }
 
 })
-export default SmartLightControl
+export default SmartTVControl
