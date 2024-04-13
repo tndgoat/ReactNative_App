@@ -4,8 +4,9 @@ import React from "react";
 import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import OctIcon from "react-native-vector-icons/Octicons";
 import HomePageScreen from "./HomePageScreen";
-import VoiceControlScreen from "./VoiceControlScreen";
+
 import MyHomeAccountStack from "./MyHomeAccountStack";
+import VoiceControl from "./VoiceControl";
 
 const Tab = createBottomTabNavigator();
 export default function TabNavigator() {
@@ -42,7 +43,7 @@ export default function TabNavigator() {
       <Tab.Screen
         name="VoiceControl"
         options={{ headerShown: false }}
-        component={VoiceControlScreen}
+        component={VoiceControl}
       ></Tab.Screen>
       <Tab.Screen
         name="MyAccount"
