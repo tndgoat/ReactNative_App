@@ -16,6 +16,7 @@ import TabNavigator from "./src/screen/TabNavigator.js";
 import SmartTVControl from "./src/screen/SmartTVControl.js";
 import SmartTVSetting from "./src/screen/SmartTVSetting.js";
 import FireDetectionScreen from "./src/screen/FireDetectionScreen.js";
+import SmartFanControl from "./src/screen/SmartFanControl.js";
 
 const Stack = createNativeStackNavigator();
 
@@ -124,6 +125,22 @@ export default function App() {
           }}
           name="SmartTVSetting"
           component={SmartTVSetting}
+        />
+
+        <Stack.Screen
+          options={{
+            title: "Smart Fan",
+            headerShadowVisible: false,
+            headerStyle: {
+              backgroundColor: "#F0F5F4",
+            },
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+          }}
+          name="SmartFan"
+          component={SmartFanControl}
         />
 
         <Stack.Screen
