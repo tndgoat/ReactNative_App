@@ -15,6 +15,7 @@ import * as SplashScreen from "expo-splash-screen";
 import TabNavigator from "./src/screen/TabNavigator.js";
 import SmartTVControl from "./src/screen/SmartTVControl.js";
 import SmartTVSetting from "./src/screen/SmartTVSetting.js";
+import FireDetectionScreen from "./src/screen/FireDetectionScreen.js";
 
 const Stack = createNativeStackNavigator();
 
@@ -123,6 +124,22 @@ export default function App() {
           }}
           name="SmartTVSetting"
           component={SmartTVSetting}
+        />
+
+        <Stack.Screen
+          options={{
+            title: "Fire Detection",
+            headerShadowVisible: false,
+            headerStyle: {
+              backgroundColor: "#F0F5F4",
+            },
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+          }}
+          name="FireDetection"
+          component={FireDetectionScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

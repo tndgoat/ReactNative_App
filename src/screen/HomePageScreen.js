@@ -9,10 +9,10 @@ import {
   View,
 } from "react-native";
 
-const devices = ["Smart Light", "Smart Fan", "Smart AC", "Smart TV"];
+const devices = ["Smart Light", "Smart Fan", "Smart TV", "Fire Detection"];
 
 function Widget({ device, navigation }) {
-  let img_link = require("../../assets/images/smart ac.png");
+  let img_link = require("../../assets/images/fire.png");
   if (device.includes("Smart Light")) {
     img_link = require("../../assets/images/smart light.png");
   } else if (device.includes("Smart Fan")) {
@@ -20,7 +20,7 @@ function Widget({ device, navigation }) {
   } else if (device.includes("Smart TV")) {
     img_link = require("../../assets/images/smart tv.png");
   } else {
-    img_link = require("../../assets/images/smart ac.png");
+    img_link = require("../../assets/images/fire.png");
   }
   const [isEnabled1, setIsEnabled1] = useState(false);
   const toggleSwitch1 = () => setIsEnabled1((previousState) => !previousState);
@@ -29,7 +29,7 @@ function Widget({ device, navigation }) {
     "Smart Light": "SmartLight",
     "Smart Fan": "SmartFan",
     "Smart TV": "SmartTV",
-    "Smart AC": "SmartAC",
+    "Fire Detection": "FireDetection",
   };
 
   const targetScreen = screenMapping[device];
@@ -46,10 +46,18 @@ function Widget({ device, navigation }) {
           { backgroundColor: isEnabled1 ? "#659A6E" : "white" },
         ]}
       >
-        <Image
-          source={img_link}
-          style={{ width: "70%", height: "70%", resizeMode: "contain" }}
-        />
+        {device === "Fire Detection" ? (
+          <Image
+            source={img_link}
+            style={{ width: "50%", height: "60%", resizeMode: "contain" }}
+          />
+        ) : (
+          <Image
+            source={img_link}
+            style={{ width: "60%", height: "60%", resizeMode: "contain" }}
+          />
+        )}
+
         <View
           style={{
             width: 170,
@@ -66,30 +74,59 @@ function Widget({ device, navigation }) {
           >
             {device}
           </Text>
+
           <View style={{ flexDirection: "row" }}>
-            <Text
-              style={{
-                fontSize: 14,
-                marginTop: 7,
-                color: isEnabled1 ? "white" : "black",
-                fontFamily: "Poppins-Regular",
-              }}
-            >
-              4 devices
-            </Text>
-            <View style={{ marginLeft: "15%" }}>
-              <Switch
+            {device != "Fire Detection" ? (
+              <Text
                 style={{
-                  transform: [{ scaleX: 0.9 }, { scaleY: 0.8 }, { scale: 0.8 }],
-                  borderColor: "white",
-                  borderWidth: 1,
-                  borderRadius: 15,
+                  fontSize: 14,
+                  marginTop: 7,
+                  color: isEnabled1 ? "white" : "black",
+                  fontFamily: "Poppins-Regular",
                 }}
-                onValueChange={toggleSwitch1}
-                value={isEnabled1}
-                trackColor={{ true: "#659A6E", false: null }}
-              ></Switch>
-            </View>
+              >
+                4 devices
+              </Text>
+            ) : (
+              <></>
+            )}
+            {device != "Fire Detection" ? (
+              <View style={{ marginLeft: "15%" }}>
+                <Switch
+                  style={{
+                    transform: [
+                      { scaleX: 0.9 },
+                      { scaleY: 0.8 },
+                      { scale: 0.8 },
+                    ],
+                    borderColor: "white",
+                    borderWidth: 1,
+                    borderRadius: 15,
+                  }}
+                  onValueChange={toggleSwitch1}
+                  value={isEnabled1}
+                  trackColor={{ true: "#659A6E", false: null }}
+                ></Switch>
+              </View>
+            ) : (
+              <View style={{ marginLeft: "33%" }}>
+                <Switch
+                  style={{
+                    transform: [
+                      { scaleX: 0.9 },
+                      { scaleY: 0.8 },
+                      { scale: 0.8 },
+                    ],
+                    borderColor: "white",
+                    borderWidth: 1,
+                    borderRadius: 15,
+                  }}
+                  onValueChange={toggleSwitch1}
+                  value={isEnabled1}
+                  trackColor={{ true: "#659A6E", false: null }}
+                ></Switch>
+              </View>
+            )}
           </View>
         </View>
       </View>
