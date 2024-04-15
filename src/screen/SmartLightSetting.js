@@ -21,7 +21,7 @@ const SmartLightSetting = ({ route }) => {
 
             <View className="flex flex-1 min-h-screen h-full justify-between items-center ">
                 <View className="flex w-full bg-[#F0F5F4]  flex-1 justify-between  ">
-                    <ImageBackground source={require('../../assets/LB1.png')} className='flex h-[400px]  w-full  justify-between' resizeMode="cover">
+                    <ImageBackground source={require('../../assets/LB1.png')} className='flex h-[500px]  w-full  justify-between' resizeMode="cover">
                         <View className='flex flex-1 w-[175px]  items-center space-y-3 mt-[40px] mb-[150px]'>
                             <Text className='text-[18px] text-center font-bold text-[#659A6E] mb-2'>{route.params.name}</Text>
                             <View className='flex justify-center items-center    '>
@@ -111,17 +111,8 @@ const SmartLightSetting = ({ route }) => {
                         </View>
 
                     </View>
-
-
                     {/* Schedule  */}
                 </View>
-
-
-
-
-
-
-
             </View >
         </ScrollView>
 

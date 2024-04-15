@@ -5,41 +5,44 @@ import { Icon } from 'react-native-elements';
 // import LocalAuth from './LocalAuth';
 const SignUp = ({ navigation }) => {
     return (
-        <View className='flex-1  justify-center items-center'>
+        <View className='flex-1   items-center'>
             <LinearGradient
-                className='flex-1 items-center space-y-[30px] w-screen'
+                className='flex-1 items-center justify-between pt-[22%] pb-[60%] space-y-[30px] w-screen'
                 colors={['rgba(83, 165, 195, 0.60)', 'rgba(240, 245, 244, .5)', 'rgba(52, 168, 83, 0.5)']}
                 start={{ x: 1, y: 0 }} end={{ x: 1, y: 1 }}
             >
-                <Image className='w-[300px] mt-[70px]' style={styles.image} source={require('../../assets/AppIcon.png')} />
-                <Text className='text-[32px] font-md'>
-                    Create An Account
-                </Text>
-                <View className="  max-w-sm">
+                <Image className='w-[300px] ' style={styles.image} source={require('../../assets/AppIcon.png')} />
+                <View className='flex items-center '>
+                    <Text className='text-[32px] font-md'>
+                        Create An Account
+                    </Text>
+                    <View className="  max-w-sm">
 
-                    <View className='flex justify-center py-[50px] items-center space-y-[10px]'>
-                        <View className="flex justify-center  w-[250px] h-[40px] px-4 rounded-lg bg-white border border-[1px] border-gray-300">
-                            <TextInput placeholder="Full name" />
-                        </View>
-                        <View className="flex justify-center  w-[250px] h-[40px] px-4 rounded-lg bg-white border border-[1px] border-gray-300">
-                            <TextInput placeholder="Email e.g. name.123@mail.com" />
-                        </View>
-                        <View className="flex justify-center  w-[250px] h-[40px] px-4 rounded-lg bg-white border border-[1px] border-gray-300">
-                            <TextInput placeholder="Enter your password" />
+                        <View className='flex justify-center py-[50px] items-center space-y-[10px]'>
+                            <View className="flex justify-center  w-[250px] h-[40px] px-4 rounded-lg bg-white border border-[1px] border-gray-300">
+                                <TextInput placeholder="Full name" />
+                            </View>
+                            <View className="flex justify-center  w-[250px] h-[40px] px-4 rounded-lg bg-white border border-[1px] border-gray-300">
+                                <TextInput placeholder="Email e.g. name.123@mail.com" />
+                            </View>
+                            <View className="flex justify-center  w-[250px] h-[40px] px-4 rounded-lg bg-white border border-[1px] border-gray-300">
+                                <TextInput placeholder="Enter your password" />
+                            </View>
+
+                            <Text className="px-[50px] text-left font-extralight text-[10px]">Password should be a minimum of 8 characters and should contain letters and numbers</Text>
+
                         </View>
 
-                        <Text className="px-[50px] text-left font-extralight text-[10px]">Password should be a minimum of 8 characters and should contain letters and numbers</Text>
 
+
+
+                        <TouchableOpacity className='flex rounded-md  self-center justify-center w-[250px] h-[35px] bg-[#34A853]'
+                            style={styles.shadow}>
+                            <Text className='text-white font-semibold text-[15px] text-center'>Create account</Text>
+                        </TouchableOpacity>
                     </View>
-
-
-
-
-                    <TouchableOpacity className='flex rounded-md  self-center justify-center w-[250px] h-[35px] bg-[#34A853]'
-                        style={styles.shadow}>
-                        <Text className='text-white font-semibold text-[15px] text-center'>Create account</Text>
-                    </TouchableOpacity>
                 </View>
+
             </LinearGradient>
 
         </View >

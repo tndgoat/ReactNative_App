@@ -12,30 +12,33 @@ import { Icon } from "react-native-elements";
 
 const HomeScreen = ({ navigation }) => {
   return (
-    <View className="flex-1  justify-center items-center ">
+    <View className="flex-1  items-center ">
       <LinearGradient
-        className="flex-1  w-screen"
+        className="flex-1 w-screen justify-between items-center pb-[15%] pt-[22%]"
         colors={["rgba(52, 168, 83, 0.15)", "rgba(52, 168, 83, 1)"]}
-        style={styles.linearGradient}
+
       >
         <Text className="text-[40px] font-bold">Smart Home</Text>
         <Image
-          className="w-[300px]"
+          className="w-[90%]"
           style={styles.image}
           source={require("../../assets/bg-image.png")}
         />
-        <Text className="text-[40px] font-bold">Welcome Home!</Text>
-        <Text className="text-[16px] font-medium p-[20px]">
-          No matter how far you go, {"\n"}
-          home will be your destination to return to. Let's make your home
-          comfortable.
-        </Text>
+        <View className='w-[80%]'>
+          <Text className="text-[38px] font-bold">Welcome Home!</Text>
+          <Text className="text-[16px] font-medium p-[20px]">
+            No matter how far you go, {"\n"}
+            home will be your destination to return to. Let's make your home
+            comfortable.
+          </Text>
+        </View>
+
         <TouchableOpacity
-          className="my-[22px] items-center justify-center h-[50px] w-[270px] bg-white rounded-[8px] shadow-lg"
+          className="my-[22px] items-center justify-center h-[50px] w-[70%] bg-white rounded-[8px] shadow-lg"
           style={styles.shadow}
           onPress={() => navigation.navigate("Login")}
         >
-          <View className="flex flex-row items-center ">
+          <View className="flex flex-row  items-center ">
             <Text className="text-[16px] font-semibold">Get started </Text>
             <Icon name="verticleleft" size={16} type="antdesign" />
           </View>
@@ -46,10 +49,7 @@ const HomeScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  linearGradient: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
+
   image: {
     resizeMode: "contain",
   },

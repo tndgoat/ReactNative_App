@@ -6,8 +6,10 @@ import {
   Switch,
   Text,
   TouchableOpacity,
+  TouchableHighlight,
   View,
 } from "react-native";
+import { Icon } from 'react-native-elements';
 
 const devices = ["Smart Light", "Smart Fan", "Smart TV", "Fire Detection"];
 
@@ -35,36 +37,20 @@ function Widget({ device, navigation }) {
   const targetScreen = screenMapping[device];
 
   return (
-    <TouchableOpacity
+    <TouchableHighlight className='w-[47%] rounded-3xl mt-[3%]'
       onPress={() => {
         navigation.navigate(targetScreen);
-      }}
-    >
-      <View
-        style={[
-          styles.widgetContent,
-          { backgroundColor: isEnabled1 ? "#659A6E" : "white" },
-        ]}
-      >
-        {device === "Fire Detection" ? (
-          <Image
-            source={img_link}
-            style={{ width: "50%", height: "60%", resizeMode: "contain" }}
-          />
-        ) : (
-          <Image
-            source={img_link}
-            style={{ width: "60%", height: "60%", resizeMode: "contain" }}
-          />
-        )}
+      }}>
 
-        <View
-          style={{
-            width: 170,
-            height: 54,
-            paddingLeft: 10,
-          }}
-        >
+      <View className='flex items-center px-3 py-2 h-[250px] justify-center border border-[0.1px] border-[#808080] rounded-3xl'
+        style={[
+          { backgroundColor: isEnabled1 ? "#659A6E" : "white" }, { elevation: 1 }]}>
+        <Image
+          source={img_link}
+          style={{ width: "60%", height: "60%", resizeMode: "contain" }}
+        />
+
+        <View className='flex  items-left justify-center'>
           <Text
             style={{
               fontSize: 20,
@@ -74,13 +60,11 @@ function Widget({ device, navigation }) {
           >
             {device}
           </Text>
-
-          <View style={{ flexDirection: "row" }}>
+          <View className='flex flex-row justify-between w-full items-center'>
             {device != "Fire Detection" ? (
               <Text
                 style={{
                   fontSize: 14,
-                  marginTop: 7,
                   color: isEnabled1 ? "white" : "black",
                   fontFamily: "Poppins-Regular",
                 }}
@@ -88,64 +72,36 @@ function Widget({ device, navigation }) {
                 4 devices
               </Text>
             ) : (
-              <></>
+              <View></View>
             )}
-            {device != "Fire Detection" ? (
-              <View style={{ marginLeft: "15%" }}>
-                <Switch
-                  style={{
-                    transform: [
-                      { scaleX: 0.9 },
-                      { scaleY: 0.8 },
-                      { scale: 0.8 },
-                    ],
-                    borderColor: "white",
-                    borderWidth: 1,
-                    borderRadius: 15,
-                  }}
-                  onValueChange={toggleSwitch1}
-                  value={isEnabled1}
-                  trackColor={{ true: "#659A6E", false: null }}
-                ></Switch>
-              </View>
-            ) : (
-              <View style={{ marginLeft: "33%" }}>
-                <Switch
-                  style={{
-                    transform: [
-                      { scaleX: 0.9 },
-                      { scaleY: 0.8 },
-                      { scale: 0.8 },
-                    ],
-                    borderColor: "white",
-                    borderWidth: 1,
-                    borderRadius: 15,
-                  }}
-                  onValueChange={toggleSwitch1}
-                  value={isEnabled1}
-                  trackColor={{ true: "#659A6E", false: null }}
-                ></Switch>
-              </View>
-            )}
+            <View >
+              <Switch
+                onValueChange={toggleSwitch1}
+                value={isEnabled1}
+                trackColor={{ false: '#D9D9D9', true: '#FFF' }}
+                thumbColor={isEnabled1 ? '#659A6E' : '#f4f3f4'}
+
+              ></Switch>
+            </View>
+
           </View>
         </View>
       </View>
-    </TouchableOpacity>
+    </TouchableHighlight>
   );
 }
-
+////////////////////////////////////////////////////////////////////  
 export default function HomePageScreen({ navigation }) {
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
-      style={{ backgroundColor: "#F0F5F4" }}
     >
-      <View style={styles.container}>
+      <View className='bg-[#F0F5F4] w-screen h-full min-h-screen flex space-y-3 justify-start items-center pt-[12%] pb-[10%]' >
         {/* Weather Sensor */}
-        <View style={{ flex: 0.3 }}>
+        <View className='flex w-full space-y-2  h-[30%]'>
           <Text
             style={{
-              paddingLeft: 8,
+              paddingLeft: 20,
               fontSize: 22,
               fontFamily: "Poppins-SemiBold",
             }}
@@ -154,16 +110,15 @@ export default function HomePageScreen({ navigation }) {
           </Text>
 
           {/* Board */}
-          <View style={styles.boardContainer}>
+          <View className=' w-fit min-w-[90%] max-w-[95%] flex flex-row items-center justify-between px-2 bg-[#D8E4E8] self-center rounded-lg border border-[5px] border-white '>
             {/* Board 1 */}
-            <View style={styles.board1Container}>
-              <Image
+            <View className='flex flex-row items-center justify-center space-x-2 '>
+              <Image className='w-[75px] h-[75px]'
                 source={require("../../assets/images/cloud.png")}
-                style={{ width: 80, height: 80 }}
               />
-              <View style={styles.weatherInfo}>
+              <View className='flex  max-w-[58%]'>
                 <Text style={{ fontFamily: "Poppins-Regular" }}>
-                  January 1, 2024
+                  April 14, 2024
                 </Text>
                 <Text style={{ fontFamily: "Poppins-SemiBold" }}>Cloudy</Text>
                 <Text style={{ fontFamily: "Poppins-Regular" }}>
@@ -171,86 +126,35 @@ export default function HomePageScreen({ navigation }) {
                 </Text>
               </View>
             </View>
-            <View style={styles.board23Container}>
+            <Icon name='minus' className='mx-[-40px]' style={{ transform: [{ rotate: '90deg' }, { scaleY: .1 }] }} color={'#4C7380'} size={99} type='material-community' />
+            <View className='flex items-center space-y-[4px] py-2'>
               {/* Board 2 */}
-              <View style={styles.board2Container}>
-                <View
-                  style={{
-                    width: 85,
-                    height: 40,
-                    flexDirection: "row",
-                  }}
-                >
+              <View className='bg-[#F0F5F4] w-[100%] py-1 px-2 flex justify-center items-center rounded-md'>
+                <View className='flex flex-row items-center space-x-1' >
                   <Image
                     source={require("../../assets/images/drop of water.png")}
-                    style={{ width: 38, height: 38 }}
+                    style={{ width: 30, height: 30 }}
                   />
-                  <Text
-                    style={{
-                      fontSize: 23,
-                      marginLeft: 5,
-                      marginTop: 3,
-                      fontFamily: "Poppins-SemiBold",
-                    }}
-                  >
-                    60%
+                  <Text style={{ fontSize: 18, fontFamily: "Poppins-SemiBold", }}>
+                    60 %
                   </Text>
                 </View>
-
-                <Text
-                  style={{
-                    fontSize: 14,
-                    marginTop: 2,
-                    fontFamily: "Poppins-Regular",
-                  }}
-                >
+                <Text style={{ fontSize: 12, fontFamily: "Poppins-Regular", }}>
                   Humidity
                 </Text>
               </View>
-
               {/* Board 3 */}
-              <View style={styles.board3Container}>
-                <View
-                  style={{
-                    width: 85,
-                    height: 40,
-                    flexDirection: "row",
-                  }}
-                >
+              <View className='bg-[#F0F5F4] py-1 px-2 flex justify-center items-center rounded-md'>
+                <View className='flex flex-row items-center space-x-1' >
                   <Image
                     source={require("../../assets/images/temperature.png")}
-                    style={{ width: 38, height: 38 }}
-                  />
-                  <Text
-                    style={{
-                      fontSize: 23,
-                      marginLeft: 5,
-                      marginTop: 3,
-                      fontFamily: "Poppins-SemiBold",
-                    }}
-                  >
-                    27
+                    style={{ width: 30, height: 30 }} />
+                  <Text style={{ fontSize: 18, fontFamily: "Poppins-SemiBold", }}>
+                    36
                   </Text>
-                  <Text style={{ fontSize: 16, marginLeft: 2 }}>°</Text>
-                  <Text
-                    style={{
-                      fontSize: 23,
-                      marginLeft: -4,
-                      marginTop: 3,
-                      fontFamily: "Poppins-SemiBold",
-                    }}
-                  >
-                    C
-                  </Text>
+                  <Icon name='temperature-celsius' size={24} type='material-community' />
                 </View>
-
-                <Text
-                  style={{
-                    fontSize: 14,
-                    marginTop: 2,
-                    fontFamily: "Poppins-Regular",
-                  }}
-                >
+                <Text style={{ fontSize: 12, fontFamily: "Poppins-Regular", }}>
                   Temperature
                 </Text>
               </View>
@@ -260,17 +164,10 @@ export default function HomePageScreen({ navigation }) {
 
         {/* Widgets */}
         <View
-          style={{
-            flex: 0.7,
-            flexDirection: "row",
-            flexWrap: "wrap",
-            justifyContent: "space-between",
-          }}
+          className='flex flex-row items-center flex-wrap w-screen px-[5%]  justify-between'
         >
           {devices.map((device, index) => (
-            <View key={index}>
-              <Widget device={device} navigation={navigation} />
-            </View>
+            <Widget key={index} device={device} navigation={navigation} />
           ))}
         </View>
       </View>
@@ -294,7 +191,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flexDirection: "column",
-    height: 800,
+    // height: 800,
     flex: 1,
     paddingTop: 60,
     padding: 15,

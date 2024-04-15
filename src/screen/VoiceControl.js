@@ -21,7 +21,7 @@ import RadioButton from "../component/RadioButton";
 import { SelectList } from "react-native-dropdown-select-list";
 import LottieView from "lottie-react-native";
 import RNPickerSelect from "react-native-picker-select";
-const VoiceControl = ({}) => {
+const VoiceControl = ({ }) => {
   // const [modalVisible, setModalVisible] = useState(false);
   // const [selectedValue, setSelectedValue] = useState('option1');
   const [selectedVoice, setSelectedVoice] = React.useState(
@@ -67,8 +67,8 @@ const VoiceControl = ({}) => {
     setSelectedVoice(value);
   };
   return (
-    <View className="flex  flex-1  bg-[#F0F5F4] justify-between pt-14 pb-16 items-center">
-      <View className="flex flex-row space-x-2">
+    <View className="flex  flex-1  bg-[#F0F5F4] justify-between pt-[20%] pb-[15%] items-center">
+      {/* <View className="flex flex-row space-x-2">
         <TouchableOpacity className="border border-1 border-[#07DE2B] rounded-2xl py-2 px-3">
           <Text className="text-[12px] font-light">
             Turn off all the lights
@@ -80,7 +80,7 @@ const VoiceControl = ({}) => {
             Turn on the fan in the living room
           </Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
       <View>
         <Text className="text-[24px] font-regular">Say Something</Text>
       </View>

@@ -85,32 +85,7 @@ const SmartLightControl = ({ }) => {
             ]
 
         },
-        {
-            id: 5,
-            name: 'Smart Light 5',
-            location: 'Bedroommmm',
-            color: { num: 2, currcolor: 1 },
-            status: 0,
-            schedule: [
-                { day: ['Mon', 'Fri'], time: ['18', '00', '22', '30'] },
-                { day: ['Tue', 'Fri'], time: ['12', '00', '22', '30'] },
-                { day: ['Thu', 'Fri'], time: ['11', '00', '22', '30'] },
-            ]
 
-        }, {
-            id: 6,
-            name: 'Smart Light 6',
-            location: 'Bedroommmm',
-            color: { num: 3, currcolor: 1 },
-
-            status: 1,
-            schedule: [
-                { day: ['Mon', 'Fri'], time: ['18', '00', '22', '30'] },
-                { day: ['Tue', 'Fri'], time: ['12', '00', '22', '30'] },
-                { day: ['Thu', 'Fri'], time: ['11', '00', '22', '30'] },
-            ]
-
-        },
     ]
     const mode = [
         { value: 'One color' },

@@ -55,13 +55,7 @@ const SmartTVControl = ({ }) => {
 
 
         },
-        {
-            name: 'Smart TV 5',
-            location: 'Bedroommmm',
-            channel: 'VTV1',
-            status: 0,
 
-        },
     ]
     const mode = [
         { value: 'One color' },
