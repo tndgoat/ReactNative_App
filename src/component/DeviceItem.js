@@ -30,7 +30,38 @@ const DeviceItem = (props) => {
   const [selected, setSelected] = React.useState("");
 
   const [isEnabled, setIsEnabled] = useState(props.status == 1);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  //const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const toggleSwitch = async () => {
+    const currentState = isEnabled;
+    setIsEnabled(!currentState);
+
+    const url =
+      "http://thingsboard.cloud/api/v1/8nx36nkj1djnq57qdu9k/attributes";
+
+    const requestBody = {
+      [`room${props.id}_${props.type}1`]: !currentState,
+    };
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      if (!response.ok) {
+        console.error("Failed to toggle switch, status code:", response.status);
+
+        setIsEnabled(currentState);
+        return;
+      }
+    } catch (error) {
+      console.error("Error: ", error);
+      setIsEnabled(currentState);
+    }
+  };
   const handleSubmit = () => {
     setModalVisible(!modalVisible);
   };
