@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Image,
   ScrollView,
@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   View,
+  ActivityIndicator,
 } from "react-native";
 import { Icon } from 'react-native-elements';
 
@@ -92,6 +93,27 @@ function Widget({ device, navigation }) {
 }
 ////////////////////////////////////////////////////////////////////  
 export default function HomePageScreen({ navigation }) {
+  const [data, setData] = useState([]);
+  const getDataFromAPI = async () => {
+    try {
+      const response = await fetch(
+        'https://thingsboard.cloud/api/v1/0RnDQh9TPVxw6SOBrJ9d/attributes?sharedKeys=temperature,humidity,power,water',
+      );
+      const json = await response.json();
+      setData(json.shared)
+      console.log(data)
+
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    setTimeout(() => {
+      getDataFromAPI();;
+    }, 60000);
+  })
+
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
@@ -136,7 +158,7 @@ export default function HomePageScreen({ navigation }) {
                     style={{ width: 30, height: 30 }}
                   />
                   <Text style={{ fontSize: 18, fontFamily: "Poppins-SemiBold", }}>
-                    60 %
+                    {data.humidity} %
                   </Text>
                 </View>
                 <Text style={{ fontSize: 12, fontFamily: "Poppins-Regular", }}>
@@ -150,7 +172,7 @@ export default function HomePageScreen({ navigation }) {
                     source={require("../../assets/images/temperature.png")}
                     style={{ width: 30, height: 30 }} />
                   <Text style={{ fontSize: 18, fontFamily: "Poppins-SemiBold", }}>
-                    36
+                    {data.temperature}
                   </Text>
                   <Icon name='temperature-celsius' size={24} type='material-community' />
                 </View>

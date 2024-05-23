@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View, } from "react-native";
 import LottieView from "lottie-react-native";
-import Slider from "@react-native-community/slider";
-// import { Slider } from '@rneui/themed';
-// import { Slider } from 'react-native-awesome-slider';
+// import Slider from "@react-native-community/slider";
+
 import { Icon } from "react-native-elements";
 
 function SmartFanSetting() {
@@ -51,14 +50,14 @@ function SmartFanSetting() {
         >
           Speed
         </Text>
-        <Slider
+        {/* <Slider
           style={{ width: 300, marginTop: 40 }}
           minimumValue={1}
           maximumValue={10}
           minimumTrackTintColor="#659A6E"
           maximumTrackTintColor="#DFE1E2"
           thumbImage={require("../../assets/images/thumb.png")}
-        />
+        /> */}
         <Text
           style={{ fontFamily: "Poppins-Regular", fontSize: 24, marginTop: 50 }}
         >
