@@ -36,22 +36,24 @@ const SmartFanControl = ({}) => {
       name: "Smart Fan 1",
       location: "Bedroom",
       status: 1,
+      id: 1,
     },
     {
       name: "Smart Fan 2",
       location: "Bedroom",
       status: 1,
+      id: 2,
     },
-    {
-      name: "Smart Fan 3",
-      location: "Bedroom",
-      status: 0,
-    },
-    {
-      name: "Smart Fan 4",
-      location: "Bedroom",
-      status: 1,
-    },
+    // {
+    //   name: "Smart Fan 3",
+    //   location: "Bedroom",
+    //   status: 0,
+    // },
+    // {
+    //   name: "Smart Fan 4",
+    //   location: "Bedroom",
+    //   status: 1,
+    // },
   ];
   const mode = [
     { value: "One color" },
@@ -149,6 +151,7 @@ const SmartFanControl = ({}) => {
           </View>
           {fandata.map((fan, index) => (
             <DeviceItem
+              id={fan.id}
               key={index}
               type={"fan"}
               name={fan.name}
