@@ -25,12 +25,59 @@ const VoiceControl = ({ }) => {
   );
   const voiceTest = [
     "turn off all the lights",
-    "turn off all the televisions",
-    "turn off all the fans",
     "turn on all the lights",
+    "turn off all the televisions",
     "turn on all the televisions",
+    "turn off all the fans",
     "turn on all the fans",
+    "close the main door",
+    "open the main door",
   ];
+  const devices = [
+    "Smart Light",
+    "Smart TV",
+    "Smart Fan",
+    "Smart Door",
+    "Fire Detection",
+  ];
+
+  // const [isEnabled, setIsEnabled] = useState(false);
+
+  const handleCmd = async (device, isTurnOn) => {
+    // const currentState = isEnabled;
+    // setIsEnabled(!currentState);
+
+    const url =
+      "http://thingsboard.cloud/api/v1/8nx36nkj1djnq57qdu9k/attributes";
+
+    const requestBody = device == "Smart Fan"
+      ? { room1_fan1: isTurnOn, room2_fan1: isTurnOn }
+      : device == "Smart Light"
+        ? { room1_light1: isTurnOn, room2_light1: isTurnOn }
+        : { door: isTurnOn };
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      if (!response.ok) {
+        console.error("Failed to toggle switch, status code:", response.status);
+
+        // setIsEnabled(currentState);
+        return;
+      }
+    } catch (error) {
+      console.error("Error: ", error);
+
+      // setIsEnabled(currentState);
+    }
+  };
+
   useEffect(() => {
     Voice.onSpeechError = onSpeechError;
     Voice.onSpeechResults = onSpeechResults;
@@ -52,8 +99,12 @@ const VoiceControl = ({ }) => {
   const onSpeechResults = (result) => {
     console.log(result.value)
     for (let text of result.value) {
-      if (voiceTest.includes(text)) {
+      // if (voiceTest.includes(text)) {
+      if (voiceTest.indexOf(text) != -1) {
+        let idx = voiceTest.indexOf(text)
+        let isTurnOn = (idx % 2 != 0)
         setSelectedVoice(text)
+        handleCmd(devices[Math.floor(idx / 2)], isTurnOn)
         break
       }
     }
@@ -85,7 +136,7 @@ const VoiceControl = ({ }) => {
         />
       </View>
       <View className="pb-4">
-        <Text className="font-light text-[14px]">{selectedVoice}</Text>
+        <Text className="font-light text-[16px]">{selectedVoice}</Text>
       </View>
 
       <View className="flex flex-row justify-center items-center space-x-10">

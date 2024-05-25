@@ -45,8 +45,8 @@ function Widget({ device, navigation }) {
     const requestBody = device.includes("Smart Fan")
       ? { room1_fan1: !currentState, room2_fan1: !currentState }
       : device.includes("Smart Light")
-      ? { room1_light1: !currentState, room2_light1: !currentState }
-      : { door: !currentState };
+        ? { room1_light1: !currentState, room2_light1: !currentState }
+        : { door: !currentState };
 
     try {
       const response = await fetch(url, {
@@ -143,7 +143,7 @@ export default function HomePageScreen({ navigation }) {
   const getDataFromAPI = async () => {
     try {
       const response = await fetch(
-        "https://thingsboard.cloud/api/v1/0RnDQh9TPVxw6SOBrJ9d/attributes?sharedKeys=temperature,humidity,power,water"
+        "https://thingsboard.cloud/api/v1/8nx36nkj1djnq57qdu9k/attributes?sharedKeys=temperature,humidity,power,water"
       );
       const json = await response.json();
       setData(json.shared);
@@ -155,7 +155,7 @@ export default function HomePageScreen({ navigation }) {
   useEffect(() => {
     setTimeout(() => {
       getDataFromAPI();
-    }, 60000);
+    }, 120000);
   });
 
   return (
