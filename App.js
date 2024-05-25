@@ -9,7 +9,7 @@ import SmartLightControl from "./src/screen/SmartLightControl.js";
 import SmartLightSetting from "./src/screen/SmartLightSetting.js";
 
 import { useFonts } from "expo-font";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import * as SplashScreen from "expo-splash-screen";
 
 import TabNavigator from "./src/screen/TabNavigator.js";

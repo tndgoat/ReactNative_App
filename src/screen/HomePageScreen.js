@@ -11,7 +11,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { Icon } from "react-native-elements";
-
+import Widget from "../component/Widget";
 const devices = [
   "Smart Light",
   "Smart Fan",
@@ -20,123 +20,123 @@ const devices = [
   "Fire Detection",
 ];
 
-function Widget({ device, navigation }) {
-  let img_link = require("../../assets/images/fire.png");
-  if (device.includes("Smart Light")) {
-    img_link = require("../../assets/images/smart light.png");
-  } else if (device.includes("Smart Fan")) {
-    img_link = require("../../assets/images/smart fan.png");
-  } else if (device.includes("Smart TV")) {
-    img_link = require("../../assets/images/smart tv.png");
-  } else if (device.includes("Smart Door")) {
-    img_link = require("../../assets/images/door.png");
-  } else {
-    img_link = require("../../assets/images/fire.png");
-  }
-  const [isEnabled, setIsEnabled] = useState(false);
-  //const toggleSwitch1 = () => setIsEnabled1((previousState) => !previousState);
-  const toggleSwitch = async () => {
-    const currentState = isEnabled;
-    setIsEnabled(!currentState);
+// function Widget({ device, navigation }) {
+//   let img_link = require("../../assets/images/fire.png");
+//   if (device.includes("Smart Light")) {
+//     img_link = require("../../assets/images/smart light.png");
+//   } else if (device.includes("Smart Fan")) {
+//     img_link = require("../../assets/images/smart fan.png");
+//   } else if (device.includes("Smart TV")) {
+//     img_link = require("../../assets/images/smart tv.png");
+//   } else if (device.includes("Smart Door")) {
+//     img_link = require("../../assets/images/door.png");
+//   } else {
+//     img_link = require("../../assets/images/fire.png");
+//   }
+//   const [isEnabled, setIsEnabled] = useState(false);
+//   //const toggleSwitch1 = () => setIsEnabled1((previousState) => !previousState);
+//   const toggleSwitch = async () => {
+//     const currentState = isEnabled;
+//     setIsEnabled(!currentState);
 
-    const url =
-      "http://thingsboard.cloud/api/v1/8nx36nkj1djnq57qdu9k/attributes";
+//     const url =
+//       "http://thingsboard.cloud/api/v1/8nx36nkj1djnq57qdu9k/attributes";
 
-    const requestBody = device.includes("Smart Fan")
-      ? { room1_fan1: !currentState, room2_fan1: !currentState }
-      : device.includes("Smart Light")
-      ? { room1_light1: !currentState, room2_light1: !currentState }
-      : { door: !currentState };
+//     const requestBody = device.includes("Smart Fan")
+//       ? { room1_fan1: !currentState, room2_fan1: !currentState }
+//       : device.includes("Smart Light")
+//         ? { room1_light1: !currentState, room2_light1: !currentState }
+//         : { door: !currentState };
 
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestBody),
-      });
+//     try {
+//       const response = await fetch(url, {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify(requestBody),
+//       });
 
-      if (!response.ok) {
-        console.error("Failed to toggle switch, status code:", response.status);
+//       if (!response.ok) {
+//         console.error("Failed to toggle switch, status code:", response.status);
 
-        setIsEnabled(currentState);
-        return;
-      }
-    } catch (error) {
-      console.error("Error: ", error);
+//         setIsEnabled(currentState);
+//         return;
+//       }
+//     } catch (error) {
+//       console.error("Error: ", error);
 
-      setIsEnabled(currentState);
-    }
-  };
+//       setIsEnabled(currentState);
+//     }
+//   };
 
-  const screenMapping = {
-    "Smart Light": "SmartLight",
-    "Smart Fan": "SmartFan",
-    "Smart TV": "SmartTV",
-    "Smart Door": "Smart Door",
-    "Fire Detection": "FireDetection",
-  };
+//   const screenMapping = {
+//     "Smart Light": "SmartLight",
+//     "Smart Fan": "SmartFan",
+//     "Smart TV": "SmartTV",
+//     "Smart Door": "Smart Door",
+//     "Fire Detection": "FireDetection",
+//   };
 
-  const targetScreen = screenMapping[device];
+//   const targetScreen = screenMapping[device];
 
-  return (
-    <TouchableHighlight
-      className="w-[47%] rounded-3xl mt-[3%]"
-      onPress={() => {
-        navigation.navigate(targetScreen);
-      }}
-    >
-      <View
-        className="flex items-center px-3 py-2 h-[250px] justify-center border border-[0.1px] border-[#808080] rounded-3xl"
-        style={[
-          { backgroundColor: isEnabled ? "#659A6E" : "white" },
-          { elevation: 1 },
-        ]}
-      >
-        <Image
-          source={img_link}
-          style={{ width: "60%", height: "60%", resizeMode: "contain" }}
-        />
+//   return (
+//     <TouchableHighlight
+//       className="w-[47%] rounded-3xl mt-[3%]"
+//       onPress={() => {
+//         navigation.navigate(targetScreen);
+//       }}
+//     >
+//       <View
+//         className="flex items-center px-3 py-2 h-[250px] justify-center border border-[0.1px] border-[#808080] rounded-3xl"
+//         style={[
+//           { backgroundColor: isEnabled ? "#659A6E" : "white" },
+//           { elevation: 1 },
+//         ]}
+//       >
+//         <Image
+//           source={img_link}
+//           style={{ width: "60%", height: "60%", resizeMode: "contain" }}
+//         />
 
-        <View className="flex  items-left justify-center">
-          <Text
-            style={{
-              fontSize: 20,
-              color: isEnabled ? "white" : "black",
-              fontFamily: "Poppins-SemiBold",
-            }}
-          >
-            {device}
-          </Text>
-          <View className="flex flex-row justify-between w-full items-center">
-            {device != "Fire Detection" && device != "Smart Door" ? (
-              <Text
-                style={{
-                  fontSize: 14,
-                  color: isEnabled ? "white" : "black",
-                  fontFamily: "Poppins-Regular",
-                }}
-              >
-                2 devices
-              </Text>
-            ) : (
-              <View></View>
-            )}
-            <View>
-              <Switch
-                onValueChange={toggleSwitch}
-                value={isEnabled}
-                trackColor={{ false: "#D9D9D9", true: "#FFF" }}
-                thumbColor={isEnabled ? "#659A6E" : "#f4f3f4"}
-              ></Switch>
-            </View>
-          </View>
-        </View>
-      </View>
-    </TouchableHighlight>
-  );
-}
+//         <View className="flex  items-left justify-center">
+//           <Text
+//             style={{
+//               fontSize: 20,
+//               color: isEnabled ? "white" : "black",
+//               fontFamily: "Poppins-SemiBold",
+//             }}
+//           >
+//             {device}
+//           </Text>
+//           <View className="flex flex-row justify-between w-full items-center">
+//             {device != "Fire Detection" && device != "Smart Door" ? (
+//               <Text
+//                 style={{
+//                   fontSize: 14,
+//                   color: isEnabled ? "white" : "black",
+//                   fontFamily: "Poppins-Regular",
+//                 }}
+//               >
+//                 2 devices
+//               </Text>
+//             ) : (
+//               <View></View>
+//             )}
+//             <View>
+//               <Switch
+//                 onValueChange={toggleSwitch}
+//                 value={isEnabled}
+//                 trackColor={{ false: "#D9D9D9", true: "#FFF" }}
+//                 thumbColor={isEnabled ? "#659A6E" : "#f4f3f4"}
+//               ></Switch>
+//             </View>
+//           </View>
+//         </View>
+//       </View>
+//     </TouchableHighlight>
+//   );
+// }
 ////////////////////////////////////////////////////////////////////
 export default function HomePageScreen({ navigation }) {
   const [data, setData] = useState([]);
@@ -148,6 +148,7 @@ export default function HomePageScreen({ navigation }) {
       const json = await response.json();
       setData(json.shared);
       console.log(data);
+      console.log(1)
     } catch (error) {
       console.error(error);
     }
@@ -155,7 +156,7 @@ export default function HomePageScreen({ navigation }) {
   useEffect(() => {
     setTimeout(() => {
       getDataFromAPI();
-    }, 60000);
+    }, 1000);
   });
 
   return (

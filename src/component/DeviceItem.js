@@ -32,14 +32,14 @@ const DeviceItem = (props) => {
   const [isEnabled, setIsEnabled] = useState(props.status == 1);
   //const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const toggleSwitch = async () => {
-    const currentState = isEnabled;
-    setIsEnabled(!currentState);
+
+    setIsEnabled(previousState => !previousState);
 
     const url =
       "http://thingsboard.cloud/api/v1/8nx36nkj1djnq57qdu9k/attributes";
 
     const requestBody = {
-      [`room${props.id}_${props.type}1`]: !currentState,
+      [`room${props.id}_${props.type}1`]: !isEnabled,
     };
 
     try {
@@ -54,12 +54,12 @@ const DeviceItem = (props) => {
       if (!response.ok) {
         console.error("Failed to toggle switch, status code:", response.status);
 
-        setIsEnabled(currentState);
+        setIsEnabled(isEnabled);
         return;
       }
     } catch (error) {
       console.error("Error: ", error);
-      setIsEnabled(currentState);
+      setIsEnabled(isEnabled);
     }
   };
   const handleSubmit = () => {
@@ -76,20 +76,20 @@ const DeviceItem = (props) => {
           onPress={() =>
             props.type === "light"
               ? navigation.navigate("LightSetting", {
-                  name: props.name,
-                  location: props.location,
-                  color: props.color,
-                  status: props.status,
-                  schedule: props.schedule,
-                })
+                name: props.name,
+                location: props.location,
+                color: props.color,
+                status: props.status,
+                schedule: props.schedule,
+              })
               : props.type === "tv"
-              ? navigation.navigate("SmartTVSetting", {
+                ? navigation.navigate("SmartTVSetting", {
                   name: props.name,
                   location: props.location,
                   channel: props.channel,
                   state: props.state,
                 })
-              : navigation.navigate("SmartFanSetting", {
+                : navigation.navigate("SmartFanSetting", {
                   name: props.name,
                 })
           }
