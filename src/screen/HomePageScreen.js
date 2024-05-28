@@ -11,7 +11,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { Icon } from "react-native-elements";
-
+let today = new Date().toLocaleDateString()
 const devices = [
   "Smart Light",
   "Smart Fan",
@@ -183,7 +183,8 @@ export default function HomePageScreen({ navigation }) {
               />
               <View className="flex  max-w-[58%]">
                 <Text style={{ fontFamily: "Poppins-Regular" }}>
-                  April 14, 2024
+                  {/* April 14, 2024 */}
+                  {today}
                 </Text>
                 <Text style={{ fontFamily: "Poppins-SemiBold" }}>Cloudy</Text>
                 <Text style={{ fontFamily: "Poppins-Regular" }}>
